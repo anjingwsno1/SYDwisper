@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Courses</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/courses.js"></script>
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Freelancer-plus Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--//fonts-->
+<link href='http://fonts.useso.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+				<script type="text/javascript">
+					jQuery(document).ready(function($) {
+						$(".scroll").click(function(event){		
+							event.preventDefault();
+							$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+						});
+					});
+					</script>
+
+</head>
+<body>
+ <!--header-->
+ <div class="header" id="home">
+	<div class="container">	
+		<div class="logo">
+			<h1><a href="/">logo!</a></h1>
+		</div>
+		<div class="header-bottom">
+			<div class="top-nav">
+				<span class="menu"> </span>
+				<ul>
+					<li><a href="/" class="scroll">主页</a></li>
+					<li><a href="/blogs" >帖子</a></li>
+					<li><a href="/courses">课程</a></li>
+				</ul>
+				<!--script-->
+			<script>
+				$("span.menu").click(function(){
+					$(".top-nav ul").slideToggle(500, function(){
+					});
+				});
+		</script>
+			</div>
+		<div class="clearfix"> </div>
+	</div>
+	<div class="clearfix"> </div>
+	</div>
+</div>
+	<script type="text/javascript">
+		function search() {
+				$.ajax({
+				//几个参数需要注意一下
+						type: "POST",//方法类型
+						dataType: "json",//预期服务器返回的数据类型
+						url: "/searchCourse" ,//url
+						data: $('#searchCourseBox').serialize(),
+						success: function (result) {
+							var elem = document.getElementById("courseList");
+							while(elem.hasChildNodes()) //当elem下还存在子节点时 循环继续
+							{
+									elem.removeChild(elem.firstChild);
+							}
+							let a = document.createElement('a');
+							let p = document.createElement('p');
+							let a2 = document.createElement('a');
+							a.textContent = result[0].courseName;
+							p.textContent = result[0].courseIntroduction;
+							a2.textContent = '查看';
+							id = result[0].courseId;
+							a2.href = '/singleCourse?courseid='+id;
+							elem.appendChild(a);
+							elem.appendChild(p);
+							elem.appendChild(a2);
+
+						},
+						error : function() {
+								alert("异常！");
+						}
+				});
+		}
+	</script>
+	<div class="container">
+		<div class="contact-page">
+		<div class=" map">
+			<h5>课程</h5>
+			</div>
+			<div class="contact-non">
+					<div class="col-md-6 contact-grid">
+						<form id="searchCourseBox" onsubmit="return false" action="##" method="post">						
+							<input type="text"  placeholder="输入课程名称或号码" name="coursename" id="Search">
+							<div class="send-in">
+								<input type="button" value="查询" onclick="search()">
+							</div>
+						</form>
+						<div id="courseButton"></div>
+					</div>
+					<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="course" id="courseList">
+			{{#each courses}}
+			<div class="courselist">
+					<a>{{courseName}}</a>
+					<p>{{courseIntroduction}}</p>
+					<a href="/singleCourse?courseid={{courseId}}" class="read">查看</a>
+			<div class="clearfix"> </div>
+			</div>
+			{{/each}}
+		</div>
+	</div>
+			<!---->
+			<div class="footer" >
+			    <div class="container">
+				<div class="footer-top" >
+				<div class="col-md-4 twitter">
+						
+							<h4>Latest Tweets</h4>
+							<div class="twitter-in">
+								<p>PSD Template: Flat One Page Website <p>
+								<a href="#" >http://bit.ly/1kfcA8M </a>
+								<span>27 Oct 2014</span>
+							</div>
+							<div class="twitter-in">
+								<p>PSD Template: Flat One Page Website <p>
+								<a href="#" >http://bit.ly/1kfcA8M </a>
+								<span>27 Oct 2014</span>
+							</div>
+						</div>
+					
+				    <div class="col-md-4 twitter">
+				
+						   <h4>Instagram</h4>
+						   <ul class="box-in">
+							<li><a href="#"></a></li>
+							<li><a href="#"></a></li>
+							<li><a href="#"></a></li>
+							<li><a href="#"></a></li>
+							<li><a href="#"></a></li>
+							<li><a href="#"></a></li>
+							<li><a href="#"></a></li>
+							<li><a href="#"></a></li>
+							<li><a href="#"></a></li>
+							
+						   </ul>
+						</div>
+					
+					<div class="col-md-4 twitter">
+						<h4>Contact Us</h4>
+							<div class="contact">
+								<form>
+									<input type="text" class="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
+									<input type="text" class="text" value="Email " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email ';}">
+									<textarea cols="10" rows="3" value="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
+								</form>
+								<div class="submit">
+									<form>
+										<input type="submit" value="SEND">
+									</form>
+								</div>
+									<div class="clearfix"></div>
+                            </div>
+					</div>
+					
+						<div class="clearfix"></div>
+						</div>
+			<div class="footer-bottom">
+				<ul class="social">
+					<li><a href="#"><i> </i></a></li>						
+					<li><a href="#"><i class="facebook"> </i></a></li>
+					<li><a href="#"><i class="html"> </i></a></li>
+					<li><a href="#"><i class="dot"> </i></a></li>
+				</ul>
+				<p class="footer-class">Copyright &copy; 2015.Company name All rights reserved.</p>
+				<div class="clearfix"></div>
+			</div>						
+		</div>
+	</div>
+</body>
+</html>
